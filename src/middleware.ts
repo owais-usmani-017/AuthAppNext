@@ -5,11 +5,12 @@ import { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
 
-  const isPublic = path==='/login' || path==='/signup';
+  const isAuthPage = path === '/login' || path === '/signup';
+  const isPublic = isAuthPage || path === '/verifyEmail';
 
   const token = request.cookies.get('token')?.value || '';
 
-  if(token && isPublic){
+  if(token && isAuthPage){
     return NextResponse.redirect(new URL('/' , request.nextUrl))
   }
   if(!isPublic && !token){
@@ -21,5 +22,5 @@ export function middleware(request: NextRequest) {
 //check if config is correct or not 
 
 export const config = {
-  matcher: ["/", "/login", "/profile", "/profile/:path*", "/signup"],
+  matcher: ["/", "/login", "/profile", "/profile/:path*", "/signup" , "/verifyEmail"],
 };
