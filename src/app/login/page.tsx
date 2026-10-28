@@ -41,8 +41,10 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1 className="text-2xl font-bold">{loading ? "Logging in..." : "Login"}</h1>
-      
+      <h1 className="text-2xl font-bold">
+        {loading ? "Logging in..." : "Login"}
+      </h1>
+
       <label htmlFor="email">Email</label>
       <input
         type="email"
@@ -72,6 +74,10 @@ export default function LoginPage() {
 
       <Link href="/signup" className="text-blue-500">
         Don't have an account? Sign Up
+      </Link>
+
+      <Link href="/forgot-password" className="text-blue-500">
+        Forgot your Password? click here to reset your password
       </Link>
     </div>
   );
